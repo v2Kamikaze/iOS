@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350B247E298F507B00ECC6F1 /* CatFactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B247D298F507B00ECC6F1 /* CatFactsManager.swift */; };
+		350B2480298F512C00ECC6F1 /* CatFactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B247F298F512C00ECC6F1 /* CatFactsModel.swift */; };
 		355DDF41298E298B00DAEE10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355DDF40298E298B00DAEE10 /* AppDelegate.swift */; };
 		355DDF43298E298B00DAEE10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355DDF42298E298B00DAEE10 /* SceneDelegate.swift */; };
 		355DDF45298E298B00DAEE10 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355DDF44298E298B00DAEE10 /* MainViewController.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		350B247D298F507B00ECC6F1 /* CatFactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactsManager.swift; sourceTree = "<group>"; };
+		350B247F298F512C00ECC6F1 /* CatFactsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactsModel.swift; sourceTree = "<group>"; };
 		355DDF3D298E298B00DAEE10 /* CatFacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatFacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		355DDF40298E298B00DAEE10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		355DDF42298E298B00DAEE10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		350B247B298F503700ECC6F1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				355DDF44298E298B00DAEE10 /* MainViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		355DDF34298E298B00DAEE10 = {
 			isa = PBXGroup;
 			children = (
@@ -54,10 +66,10 @@
 		355DDF3F298E298B00DAEE10 /* CatFacts */ = {
 			isa = PBXGroup;
 			children = (
+				350B247B298F503700ECC6F1 /* Controller */,
 				355DDF57298E2ACD00DAEE10 /* Config */,
 				355DDF54298E2A8600DAEE10 /* Model */,
 				355DDF56298E2AA200DAEE10 /* View */,
-				355DDF55298E2A9100DAEE10 /* ViewModel */,
 				355DDF49298E298C00DAEE10 /* Assets.xcassets */,
 				355DDF4E298E298C00DAEE10 /* Info.plist */,
 			);
@@ -67,22 +79,16 @@
 		355DDF54298E2A8600DAEE10 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				350B247D298F507B00ECC6F1 /* CatFactsManager.swift */,
+				350B247F298F512C00ECC6F1 /* CatFactsModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		355DDF55298E2A9100DAEE10 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		355DDF56298E2AA200DAEE10 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				355DDF4B298E298C00DAEE10 /* LaunchScreen.storyboard */,
-				355DDF44298E298B00DAEE10 /* MainViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,7 +173,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				355DDF45298E298B00DAEE10 /* MainViewController.swift in Sources */,
+				350B247E298F507B00ECC6F1 /* CatFactsManager.swift in Sources */,
 				355DDF41298E298B00DAEE10 /* AppDelegate.swift in Sources */,
+				350B2480298F512C00ECC6F1 /* CatFactsModel.swift in Sources */,
 				355DDF43298E298B00DAEE10 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

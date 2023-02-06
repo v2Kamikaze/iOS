@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,31 +14,24 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="hQ5-Nr-Fn3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cat Facts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFk-Bb-Nr1">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
-                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="65"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cat Facts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hFk-Bb-Nr1">
+                                <rect key="frame" x="16" y="0.0" width="288" height="568"/>
+                                <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="65"/>
                                 <color key="textColor" red="0.96862745289999996" green="0.80000001190000003" blue="0.79607844350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.46526659149484539" green="0.46526659149484539" blue="0.46526659149484539" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="2Vu-ef-d1u"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="hFk-Bb-Nr1" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="CUd-QU-9WC"/>
-                            <constraint firstAttribute="bottom" secondItem="hQ5-Nr-Fn3" secondAttribute="bottom" id="JMp-VY-1ck"/>
                             <constraint firstItem="hFk-Bb-Nr1" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="PLH-Hp-fHw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hFk-Bb-Nr1" secondAttribute="trailing" id="QUi-8f-Z99"/>
                             <constraint firstAttribute="bottomMargin" secondItem="hFk-Bb-Nr1" secondAttribute="bottom" id="TOC-tO-ZX7"/>
-                            <constraint firstAttribute="trailing" secondItem="hQ5-Nr-Fn3" secondAttribute="trailing" id="dwf-Hz-iao"/>
-                            <constraint firstItem="hQ5-Nr-Fn3" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="jQE-OY-UcQ"/>
-                            <constraint firstItem="hQ5-Nr-Fn3" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="wfi-bv-2Zc"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -47,7 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="426.66665649414062" height="426.66665649414062"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
