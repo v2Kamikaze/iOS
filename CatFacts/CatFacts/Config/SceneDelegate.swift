@@ -2,7 +2,6 @@
 //  SceneDelegate.swift
 //  CatFacts
 //
-//  Created by Silvia Helena on 04/02/23.
 //
 
 import UIKit
@@ -19,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowsScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowsScene)
-        window.rootViewController = UINavigationController(rootViewController: MainViewController())
+        window.rootViewController = CatFactsApp()
         window.makeKeyAndVisible()
         self.window = window
     }

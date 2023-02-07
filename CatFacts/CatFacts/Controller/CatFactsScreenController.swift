@@ -1,11 +1,12 @@
 //
-//  ViewController.swift
+//  CatFactScreenController.swift
 //  CatFacts
+//
 //
 
 import UIKit
 
-class MainViewController: UIViewController {
+class CatFactsScreenController: UIViewController {
     
     let manager = CatFactsManager.shared
     
@@ -13,12 +14,17 @@ class MainViewController: UIViewController {
     
     let paddingLeft = CGFloat(10)
     let paddingRight = CGFloat(-10)
+        
+    lazy var progressIndicator: UIActivityIndicatorView = ProgressIndicator()
     
-    lazy var progressIndicator: UIActivityIndicatorView = {
-        let progressIndicator = UIActivityIndicatorView(style: .large)
-        progressIndicator.translatesAutoresizingMaskIntoConstraints = false
-        progressIndicator.color = .black
-        return progressIndicator
+    let label: UILabel = LargeTitleLabel(text: "Just click to get a random cat fact")
+    
+    let backgroundImage: UIImageView = AppBackgroundImage()
+    
+    lazy var button: UIButton = {
+        var button = PinkRoundedButton(text: "Get Facts")
+        button.addTarget(self, action: #selector(onClick), for: .touchUpInside)
+        return button
     }()
     
     lazy var scrollView: UIScrollView = {
@@ -28,16 +34,6 @@ class MainViewController: UIViewController {
         return scrollView
     }()
     
-    lazy var label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Just click to get a random cat fact"
-        label.numberOfLines = 3
-        label.textAlignment = .center
-        label.font = UIFont(name: "Verdana Bold", size: 35)
-        label.adjustsFontSizeToFitWidth = true
-        return label
-    }()
     
     lazy var resLabel: UILabel = {
         let label = UILabel()
@@ -49,37 +45,10 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    lazy var backgroundImage: UIImageView = {
-        let image = UIImage(named: "background")
-        let imageView = UIImageView(image: image)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
-    lazy var button: UIButton = {
-        var button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(named: "buttonPink")
-        button.setTitle("New fact", for: .normal)
-        button.layer.cornerRadius = 5
-        button.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
-        button.layer.borderWidth = 2
-        button.addTarget(self, action: #selector(onClick), for: .touchUpInside)
-        return button
-    }()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "backgroundPink")
-        self.view.addSubview(backgroundImage)
-        self.view.addSubview(scrollView)
-        self.scrollView.addSubview(label)
-        self.scrollView.addSubview(button)
-        self.scrollView.addSubview(resLabel)
-        self.scrollView.addSubview(progressIndicator)
-        configConstraints()
+        self.setupView()
     }
     
     @objc func onClick() {
@@ -102,11 +71,23 @@ class MainViewController: UIViewController {
         }
     }
     
-    private func configConstraints() {
-        
+}
+
+extension CatFactsScreenController : ViewCodeBuild {
+    func buildViewHierarchy() {
+        self.view.backgroundColor = UIColor(named: "backgroundPink")
+        self.view.addSubview(backgroundImage)
+        self.view.addSubview(scrollView)
+        self.scrollView.addSubview(label)
+        self.scrollView.addSubview(button)
+        self.scrollView.addSubview(resLabel)
+        self.scrollView.addSubview(progressIndicator)
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             
-            // MARK: - Backround Constraints
+            // MARK: - Background Constraints
             self.backgroundImage.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.backgroundImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -118,7 +99,7 @@ class MainViewController: UIViewController {
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             
             // MARK: - Configuring Label inside ScrollView
-            self.label.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+            self.label.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 20),
             self.label.bottomAnchor.constraint(lessThanOrEqualTo: self.scrollView.centerYAnchor),
             self.label.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLeft),
             self.label.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: paddingRight),
@@ -140,10 +121,10 @@ class MainViewController: UIViewController {
             self.progressIndicator.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLeft),
             self.progressIndicator.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: paddingRight),
             
-            
         ])
-        
     }
     
+    func setupAdditionalConfiguration() {}
+    
+    
 }
-

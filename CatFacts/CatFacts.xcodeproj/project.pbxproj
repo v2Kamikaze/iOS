@@ -11,9 +11,20 @@
 		350B2480298F512C00ECC6F1 /* CatFactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B247F298F512C00ECC6F1 /* CatFactsModel.swift */; };
 		355DDF41298E298B00DAEE10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355DDF40298E298B00DAEE10 /* AppDelegate.swift */; };
 		355DDF43298E298B00DAEE10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355DDF42298E298B00DAEE10 /* SceneDelegate.swift */; };
-		355DDF45298E298B00DAEE10 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355DDF44298E298B00DAEE10 /* MainViewController.swift */; };
+		355DDF45298E298B00DAEE10 /* CatFactsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355DDF44298E298B00DAEE10 /* CatFactsApp.swift */; };
 		355DDF4A298E298C00DAEE10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 355DDF49298E298C00DAEE10 /* Assets.xcassets */; };
 		355DDF4D298E298C00DAEE10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 355DDF4B298E298C00DAEE10 /* LaunchScreen.storyboard */; };
+		355FF123299218AD00996DCB /* ViewCodeBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF122299218AD00996DCB /* ViewCodeBuild.swift */; };
+		355FF12529921EF400996DCB /* CatImagesScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF12429921EF400996DCB /* CatImagesScreenController.swift */; };
+		355FF12729921F0F00996DCB /* CatFactsScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF12629921F0F00996DCB /* CatFactsScreenController.swift */; };
+		355FF12929922AC000996DCB /* PinkRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF12829922AC000996DCB /* PinkRoundedButton.swift */; };
+		355FF12B29922DDF00996DCB /* AppBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF12A29922DDF00996DCB /* AppBackgroundImage.swift */; };
+		355FF12D29922F2000996DCB /* LargeTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF12C29922F2000996DCB /* LargeTitleLabel.swift */; };
+		355FF12F29922FD500996DCB /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF12E29922FD500996DCB /* ProgressIndicator.swift */; };
+		355FF131299231E200996DCB /* CatImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF130299231E200996DCB /* CatImageModel.swift */; };
+		355FF1332992323500996DCB /* CatImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF1322992323500996DCB /* CatImagesManager.swift */; };
+		355FF1352992348500996DCB /* CatFactsListScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF1342992348500996DCB /* CatFactsListScreenController.swift */; };
+		355FF1372992362D00996DCB /* AppTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF1362992362D00996DCB /* AppTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +33,21 @@
 		355DDF3D298E298B00DAEE10 /* CatFacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatFacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		355DDF40298E298B00DAEE10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		355DDF42298E298B00DAEE10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		355DDF44298E298B00DAEE10 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		355DDF44298E298B00DAEE10 /* CatFactsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactsApp.swift; sourceTree = "<group>"; };
 		355DDF49298E298C00DAEE10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		355DDF4C298E298C00DAEE10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		355DDF4E298E298C00DAEE10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		355FF122299218AD00996DCB /* ViewCodeBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeBuild.swift; sourceTree = "<group>"; };
+		355FF12429921EF400996DCB /* CatImagesScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImagesScreenController.swift; sourceTree = "<group>"; };
+		355FF12629921F0F00996DCB /* CatFactsScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactsScreenController.swift; sourceTree = "<group>"; };
+		355FF12829922AC000996DCB /* PinkRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinkRoundedButton.swift; sourceTree = "<group>"; };
+		355FF12A29922DDF00996DCB /* AppBackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundImage.swift; sourceTree = "<group>"; };
+		355FF12C29922F2000996DCB /* LargeTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleLabel.swift; sourceTree = "<group>"; };
+		355FF12E29922FD500996DCB /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
+		355FF130299231E200996DCB /* CatImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageModel.swift; sourceTree = "<group>"; };
+		355FF1322992323500996DCB /* CatImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImagesManager.swift; sourceTree = "<group>"; };
+		355FF1342992348500996DCB /* CatFactsListScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactsListScreenController.swift; sourceTree = "<group>"; };
+		355FF1362992362D00996DCB /* AppTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +64,10 @@
 		350B247B298F503700ECC6F1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				355DDF44298E298B00DAEE10 /* MainViewController.swift */,
+				355DDF44298E298B00DAEE10 /* CatFactsApp.swift */,
+				355FF12429921EF400996DCB /* CatImagesScreenController.swift */,
+				355FF12629921F0F00996DCB /* CatFactsScreenController.swift */,
+				355FF1342992348500996DCB /* CatFactsListScreenController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -66,6 +91,7 @@
 		355DDF3F298E298B00DAEE10 /* CatFacts */ = {
 			isa = PBXGroup;
 			children = (
+				355FF1212992189600996DCB /* Protocol */,
 				350B247B298F503700ECC6F1 /* Controller */,
 				355DDF57298E2ACD00DAEE10 /* Config */,
 				355DDF54298E2A8600DAEE10 /* Model */,
@@ -79,8 +105,10 @@
 		355DDF54298E2A8600DAEE10 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				350B247D298F507B00ECC6F1 /* CatFactsManager.swift */,
 				350B247F298F512C00ECC6F1 /* CatFactsModel.swift */,
+				350B247D298F507B00ECC6F1 /* CatFactsManager.swift */,
+				355FF130299231E200996DCB /* CatImageModel.swift */,
+				355FF1322992323500996DCB /* CatImagesManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -89,6 +117,11 @@
 			isa = PBXGroup;
 			children = (
 				355DDF4B298E298C00DAEE10 /* LaunchScreen.storyboard */,
+				355FF12829922AC000996DCB /* PinkRoundedButton.swift */,
+				355FF12A29922DDF00996DCB /* AppBackgroundImage.swift */,
+				355FF12C29922F2000996DCB /* LargeTitleLabel.swift */,
+				355FF12E29922FD500996DCB /* ProgressIndicator.swift */,
+				355FF1362992362D00996DCB /* AppTableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -100,6 +133,14 @@
 				355DDF40298E298B00DAEE10 /* AppDelegate.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		355FF1212992189600996DCB /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				355FF122299218AD00996DCB /* ViewCodeBuild.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,11 +213,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				355DDF45298E298B00DAEE10 /* MainViewController.swift in Sources */,
+				355FF123299218AD00996DCB /* ViewCodeBuild.swift in Sources */,
+				355FF1372992362D00996DCB /* AppTableView.swift in Sources */,
+				355FF12B29922DDF00996DCB /* AppBackgroundImage.swift in Sources */,
+				355DDF45298E298B00DAEE10 /* CatFactsApp.swift in Sources */,
+				355FF12729921F0F00996DCB /* CatFactsScreenController.swift in Sources */,
+				355FF12F29922FD500996DCB /* ProgressIndicator.swift in Sources */,
 				350B247E298F507B00ECC6F1 /* CatFactsManager.swift in Sources */,
+				355FF1352992348500996DCB /* CatFactsListScreenController.swift in Sources */,
+				355FF12529921EF400996DCB /* CatImagesScreenController.swift in Sources */,
+				355FF12929922AC000996DCB /* PinkRoundedButton.swift in Sources */,
 				355DDF41298E298B00DAEE10 /* AppDelegate.swift in Sources */,
 				350B2480298F512C00ECC6F1 /* CatFactsModel.swift in Sources */,
 				355DDF43298E298B00DAEE10 /* SceneDelegate.swift in Sources */,
+				355FF131299231E200996DCB /* CatImageModel.swift in Sources */,
+				355FF1332992323500996DCB /* CatImagesManager.swift in Sources */,
+				355FF12D29922F2000996DCB /* LargeTitleLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
