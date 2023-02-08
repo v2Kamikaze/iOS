@@ -9,22 +9,57 @@ class CatImagesScreenController: UIViewController {
     
     let manager = CatImagesManager.shared
     
-    let backgroundImage: UIImageView = AppBackgroundImage()
+    private var currentImage: String?
     
-    let label = LargeTitleLabel(text: "Just click to get a random image")
+    lazy var backgroundImage: UIImageView = AppBackgroundImage()
+    
+    let label = LargeTitleLabel(text: "A random cat image to save")
     
     let progressIndicator: UIActivityIndicatorView = ProgressIndicator()
+    
+    lazy var column: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        return stackView
+    }()
+    
+    lazy var row: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.spacing = 20
+        return stackView
+    }()
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .white
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        imageView.layer.borderWidth = 2
         return imageView
     }()
     
-    lazy var button: UIButton = {
-        var button = PinkRoundedButton(text: "Get Images")
-        button.addTarget(self, action: #selector(onClick), for: .touchUpInside)
+    lazy var buttonNewImage: UIButton = {
+        var button = PinkRoundedButton(text: "New image")
+        button.titleLabel?.frame = CGRect(x: 0, y: 0, width: 200, height: 0)
+        button.addTarget(self, action: #selector(loadImage), for: .touchUpInside)
+        return button
+    }()
+
+    
+    lazy var buttonSaveImage: UIButton = {
+        var button = PinkRoundedButton(text: "Save image")
+        button.titleLabel?.frame = CGRect(x: 0, y: 0, width: 200, height: 0)
+        button.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
         return button
     }()
     
@@ -32,9 +67,70 @@ class CatImagesScreenController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.loadImage()
     }
     
-    @objc func onClick() {
+    @objc func saveImage() {
+        guard let url = currentImage else {
+            let alert = UIAlertController(
+                title: "No image to save",
+                message: "Try click in button \"New image\"",
+                preferredStyle: .alert
+            )
+            
+            let dismissAction = UIAlertAction(title: "Close", style: .default) { action in return }
+            
+            alert.addAction(dismissAction)
+            self.present(alert, animated: true)
+            
+            return
+        }
+        let imageURL = URL(string: url)!
+        let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+        let startIndex = url.lastIndex(of: "/")!
+        let name = url[startIndex..<url.endIndex]
+        let fileName = documentDir.appendingPathComponent(String(name), isDirectory: false)
+        print(fileName.relativePath)
+        
+        URLSession.shared.downloadTask(with: imageURL) { tempFileURL, response, error in
+            if let imageTempFileURL = tempFileURL {
+                do {
+                    let image = try Data(contentsOf: imageTempFileURL)
+                    try image.write(to: fileName)
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(
+                            title: "Image saved in: ",
+                            message: "\(imageTempFileURL.relativePath)",
+                            preferredStyle: .actionSheet
+                        )
+                        
+                        let dismissAction = UIAlertAction(title: "Close", style: .default) { action in return }
+                        
+                        alert.addAction(dismissAction)
+                        self.present(alert, animated: true)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(
+                            title: "Could not save image",
+                            message: "\(error)",
+                            preferredStyle: .alert
+                        )
+                        
+                        let dismissAction = UIAlertAction(title: "Close", style: .default) { action in return }
+                        
+                        alert.addAction(dismissAction)
+                        self.present(alert, animated: true)
+                    }
+                    
+                    return
+                }
+            }
+            
+        }.resume()
+    }
+    
+    @objc func loadImage() {
         self.progressIndicator.startAnimating()
         manager.getFacts { [weak self] result in
             guard let self = self else { return }
@@ -45,9 +141,8 @@ class CatImagesScreenController: UIViewController {
                 return
             case .success(let image):
                 
-                let isGif = image.file.contains(".gif")
-                
                 guard let url = URL(string: image.file) else { return }
+                self.currentImage = image.file
                 
                 URLSession.shared.dataTask(with: url) { data, _, error in
                     guard let data = data, error == nil else {
@@ -56,14 +151,10 @@ class CatImagesScreenController: UIViewController {
                     
                     DispatchQueue.main.async {
                         self.progressIndicator.stopAnimating()
-                        if isGif {
-                            // Implementar depois
-                        }
                         self.image.image = UIImage(data: data)
                         
                     }
                 }.resume()
-                
             }
         }
     }
@@ -72,48 +163,39 @@ class CatImagesScreenController: UIViewController {
 extension CatImagesScreenController : ViewCodeBuild {
     func buildViewHierarchy() {
         self.view.addSubview(backgroundImage)
-        self.view.addSubview(label)
-        self.view.addSubview(button)
-        self.view.addSubview(image)
+        self.row.addArrangedSubview(buttonNewImage)
+        self.row.addArrangedSubview(buttonSaveImage)
+        self.column.addArrangedSubview(label)
+        self.column.addArrangedSubview(row)
+        self.column.addArrangedSubview(image)
+       
+        self.view.addSubview(column)
         self.view.addSubview(progressIndicator)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
+            
+            // MARK: - Column
+            self.column.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            self.column.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,  constant: -10),
+            self.column.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            self.column.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            
+            // MARK: - ProgressIndicator
+            self.progressIndicator.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
+            self.progressIndicator.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            
             // MARK: - Background Image
             self.backgroundImage.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.backgroundImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.backgroundImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            
-            // MARK: - Label
-            self.label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            self.label.bottomAnchor.constraint(lessThanOrEqualTo: self.view.safeAreaLayoutGuide.centerYAnchor),
-            self.label.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            self.label.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            
-            //  MARK: - Button
-            self.button.topAnchor.constraint(equalTo: self.label.bottomAnchor, constant: 30),
-            self.button.centerXAnchor.constraint(equalTo: self.label.centerXAnchor),
-            self.button.widthAnchor.constraint(equalToConstant: 200),
-            
-            // MARK: - Image
-            self.image.topAnchor.constraint(equalTo: self.button.bottomAnchor, constant: 80),
-            self.image.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            self.image.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            self.image.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            self.image.heightAnchor.constraint(equalToConstant: 200),
-            
-            // MARK: - ProgressIndicator
-            self.progressIndicator.topAnchor.constraint(equalTo: self.button.bottomAnchor, constant: 80),
-            self.progressIndicator.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            self.progressIndicator.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            self.progressIndicator.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
         ])
     }
     
     func setupAdditionalConfiguration() {
-        
+        self.view.backgroundColor = UIColor(named: "backgroundPink")
     }
     
     

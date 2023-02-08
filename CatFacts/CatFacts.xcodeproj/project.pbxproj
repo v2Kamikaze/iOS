@@ -23,7 +23,6 @@
 		355FF12F29922FD500996DCB /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF12E29922FD500996DCB /* ProgressIndicator.swift */; };
 		355FF131299231E200996DCB /* CatImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF130299231E200996DCB /* CatImageModel.swift */; };
 		355FF1332992323500996DCB /* CatImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF1322992323500996DCB /* CatImagesManager.swift */; };
-		355FF1352992348500996DCB /* CatFactsListScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF1342992348500996DCB /* CatFactsListScreenController.swift */; };
 		355FF1372992362D00996DCB /* AppTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF1362992362D00996DCB /* AppTableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +45,6 @@
 		355FF12E29922FD500996DCB /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		355FF130299231E200996DCB /* CatImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageModel.swift; sourceTree = "<group>"; };
 		355FF1322992323500996DCB /* CatImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImagesManager.swift; sourceTree = "<group>"; };
-		355FF1342992348500996DCB /* CatFactsListScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactsListScreenController.swift; sourceTree = "<group>"; };
 		355FF1362992362D00996DCB /* AppTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +65,6 @@
 				355DDF44298E298B00DAEE10 /* CatFactsApp.swift */,
 				355FF12429921EF400996DCB /* CatImagesScreenController.swift */,
 				355FF12629921F0F00996DCB /* CatFactsScreenController.swift */,
-				355FF1342992348500996DCB /* CatFactsListScreenController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -220,7 +217,6 @@
 				355FF12729921F0F00996DCB /* CatFactsScreenController.swift in Sources */,
 				355FF12F29922FD500996DCB /* ProgressIndicator.swift in Sources */,
 				350B247E298F507B00ECC6F1 /* CatFactsManager.swift in Sources */,
-				355FF1352992348500996DCB /* CatFactsListScreenController.swift in Sources */,
 				355FF12529921EF400996DCB /* CatImagesScreenController.swift in Sources */,
 				355FF12929922AC000996DCB /* PinkRoundedButton.swift in Sources */,
 				355DDF41298E298B00DAEE10 /* AppDelegate.swift in Sources */,

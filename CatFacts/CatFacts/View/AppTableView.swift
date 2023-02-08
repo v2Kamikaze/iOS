@@ -16,6 +16,9 @@ class AppTableView: UITableView {
         self.delegate = self
         self.dataSource = self
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .clear
+        self.allowsSelection = false
+        self.separatorStyle = .none
         self.register(UITableViewCell.self, forCellReuseIdentifier: "fact_cell")
     }
     
@@ -34,23 +37,12 @@ extension AppTableView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fact_cell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = data[indexPath.row].text
+        cell.textLabel?.numberOfLines = 5
+        cell.backgroundColor = .white
+        cell.layer.cornerRadius = 5
+        cell.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        cell.layer.borderWidth = 2
         return cell
-    }
-    
-    
-}
-
-extension AppTableView : ViewCodeBuild {
-    func buildViewHierarchy() {
-        
-    }
-    
-    func setupConstraints() {
-        
-    }
-    
-    func setupAdditionalConfiguration() {
-        
     }
 }
 

@@ -12,7 +12,7 @@ class LargeTitleLabel: UILabel {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.text = text
-        self.numberOfLines = 2
+        self.numberOfLines = 4
         self.textAlignment = .center
         self.font = UIFont(name: "Verdana Bold", size: 35)
         self.adjustsFontSizeToFitWidth = true

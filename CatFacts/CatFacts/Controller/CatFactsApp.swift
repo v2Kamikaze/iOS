@@ -27,10 +27,7 @@ class CatFactsApp: UITabBarController {
         let catImagesController = UINavigationController(rootViewController: CatImagesScreenController())
         catImagesController.title = "Cat Images"
         catImagesController.tabBarItem.image = UIImage(systemName: "photo")
-        let factsListController = UINavigationController(rootViewController: CatFactsListScreenController())
-        factsListController.title = "Facts List"
-        factsListController.tabBarItem.image = UIImage(systemName: "list.clipboard")
-        self.setViewControllers([factsController, catImagesController, factsListController], animated: true)
+        self.setViewControllers([factsController, catImagesController], animated: true)
     }
 }
 

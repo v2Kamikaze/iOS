@@ -10,6 +10,8 @@ class CatFactsScreenController: UIViewController {
     
     let manager = CatFactsManager.shared
     
+    let defaults = UserDefaults.standard
+    
     var facts: CatFactsModel = []
     
     let paddingLeft = CGFloat(10)
@@ -17,15 +19,9 @@ class CatFactsScreenController: UIViewController {
         
     lazy var progressIndicator: UIActivityIndicatorView = ProgressIndicator()
     
-    let label: UILabel = LargeTitleLabel(text: "Just click to get a random cat fact")
+    let label: UILabel = LargeTitleLabel(text: "Daily random cat facts")
     
     let backgroundImage: UIImageView = AppBackgroundImage()
-    
-    lazy var button: UIButton = {
-        var button = PinkRoundedButton(text: "Get Facts")
-        button.addTarget(self, action: #selector(onClick), for: .touchUpInside)
-        return button
-    }()
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -35,14 +31,17 @@ class CatFactsScreenController: UIViewController {
     }()
     
     
-    lazy var resLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
-        label.numberOfLines = .max
-        label.textAlignment = .center
-        label.font = UIFont(name: "Verdana Bold", size: 20)
-        return label
+    lazy var factsList = {
+        AppTableView(from: facts)
+    }()
+    
+    lazy var column: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        return stackView
     }()
     
 
@@ -51,7 +50,7 @@ class CatFactsScreenController: UIViewController {
         self.setupView()
     }
     
-    @objc func onClick() {
+    func loadFacts() {
         self.progressIndicator.startAnimating()
         manager.getFacts { [weak self] result in
             guard let self = self else { return }
@@ -61,11 +60,11 @@ class CatFactsScreenController: UIViewController {
                 print("Ocorreu um erro:  \(error)")
                 return
             case .success(let facts):
-                self.facts = facts
-                
                 DispatchQueue.main.async {
                     self.progressIndicator.stopAnimating()
-                    self.resLabel.text = facts.map { $0.text }.joined(separator: "\n")
+                    self.facts = facts
+                    self.factsList.data = facts
+                    self.factsList.reloadData()
                 }
             }
         }
@@ -75,13 +74,12 @@ class CatFactsScreenController: UIViewController {
 
 extension CatFactsScreenController : ViewCodeBuild {
     func buildViewHierarchy() {
-        self.view.backgroundColor = UIColor(named: "backgroundPink")
         self.view.addSubview(backgroundImage)
+        self.column.addArrangedSubview(label)
+        self.column.addArrangedSubview(factsList)
+        self.scrollView.addSubview(column)
         self.view.addSubview(scrollView)
-        self.scrollView.addSubview(label)
-        self.scrollView.addSubview(button)
-        self.scrollView.addSubview(resLabel)
-        self.scrollView.addSubview(progressIndicator)
+        self.view.addSubview(progressIndicator)
     }
     
     func setupConstraints() {
@@ -98,33 +96,21 @@ extension CatFactsScreenController : ViewCodeBuild {
             self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             
-            // MARK: - Configuring Label inside ScrollView
-            self.label.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 20),
-            self.label.bottomAnchor.constraint(lessThanOrEqualTo: self.scrollView.centerYAnchor),
-            self.label.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLeft),
-            self.label.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: paddingRight),
+            // MARK: - Column
+            self.column.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            self.column.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            self.column.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            self.column.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             
-            // MARK: - Configuring Button inside ScrollView
-            self.button.topAnchor.constraint(equalTo: self.label.bottomAnchor, constant: 30),
-            self.button.centerXAnchor.constraint(equalTo: self.label.centerXAnchor),
-            self.button.widthAnchor.constraint(equalToConstant: 200),
-            
-            // MARK: - Configuring ResLabel inside ScrollView
-            self.resLabel.topAnchor.constraint(equalTo: self.button.bottomAnchor, constant: 80),
-            self.resLabel.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
-            self.resLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLeft),
-            self.resLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: paddingRight),
             
             // MARK: - Configuring ProgressIndicator inside ScrollView
-            self.progressIndicator.topAnchor.constraint(equalTo: self.button.bottomAnchor, constant: 80),
-            self.progressIndicator.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
-            self.progressIndicator.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLeft),
-            self.progressIndicator.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: paddingRight),
-            
+            self.progressIndicator.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
+            self.progressIndicator.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
         ])
     }
     
-    func setupAdditionalConfiguration() {}
-    
-    
+    func setupAdditionalConfiguration() {
+        self.view.backgroundColor = UIColor(named: "backgroundPink")
+        self.loadFacts()
+    }
 }
